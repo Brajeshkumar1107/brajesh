@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Brajeshkumar1107/brajesh/static/css/main.fbea72d0.css",
+    "main.js": "/Brajeshkumar1107/brajesh/static/js/main.31f2c958.js",
+    "static/js/453.ffd317f4.chunk.js": "/Brajeshkumar1107/brajesh/static/js/453.ffd317f4.chunk.js",
+    "index.html": "/Brajeshkumar1107/brajesh/index.html",
+    "main.fbea72d0.css.map": "/Brajeshkumar1107/brajesh/static/css/main.fbea72d0.css.map",
+    "main.31f2c958.js.map": "/Brajeshkumar1107/brajesh/static/js/main.31f2c958.js.map",
+    "453.ffd317f4.chunk.js.map": "/Brajeshkumar1107/brajesh/static/js/453.ffd317f4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fbea72d0.css",
+    "static/js/main.31f2c958.js"
+  ]
+}
