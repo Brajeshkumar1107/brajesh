@@ -234,7 +234,7 @@ function App() {
             </div>
             <div className="col-md-5 text-center d-flex justify-content-center align-items-center">
               <div className="profile-photo-wrapper mx-auto">
-                <img src="/profile.jpg" alt="Brajesh Kumar" className="img-fluid rounded-circle shadow profile-photo" width="320" />
+                <img src={process.env.PUBLIC_URL + '/profile.jpg'} alt="Brajesh Kumar" className="img-fluid rounded-circle shadow profile-photo" width="320" />
               </div>
             </div>
           </div>
@@ -250,7 +250,7 @@ function App() {
             <div className="col-lg-6 mb-4 mb-lg-0">
               <div className="about-image-container">
                 <div className="about-image-wrapper">
-                  <img src="/profile.jpg" alt="Brajesh Kumar" className="about-image" />
+                  <img src={process.env.PUBLIC_URL + '/profile.jpg'} alt="Brajesh Kumar" className="about-image" />
                   <div className="about-image-overlay">
                     <div className="about-stats">
                       <div className="stat-item">
