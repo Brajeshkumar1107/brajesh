@@ -158,6 +158,27 @@ function App() {
     }
   };
 
+  // Function to close mobile navbar menu
+  const closeMobileMenu = () => {
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+      // Remove the 'show' class to close the menu
+      navbarCollapse.classList.remove('show');
+      // Also update the aria-expanded attribute on the toggler button
+      const togglerButton = document.querySelector('.navbar-toggler');
+      if (togglerButton) {
+        togglerButton.setAttribute('aria-expanded', 'false');
+      }
+    }
+  };
+
+  // Enhanced scroll function that also closes mobile menu
+  const handleNavClick = (e, sectionId) => {
+    e.preventDefault();
+    scrollToSection(sectionId);
+    closeMobileMenu();
+  };
+
   // Experience carousel functions
   const nextExperience = () => {
     setCurrentExperience((prev) => (prev + 1) % 2);
@@ -187,12 +208,12 @@ function App() {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li className="nav-item"><a className="nav-link" href="#home" onClick={(e) => { e.preventDefault(); scrollToSection('home'); }}>Home</a></li>
-              <li className="nav-item"><a className="nav-link" href="#about" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}>About</a></li>
-              <li className="nav-item"><a className="nav-link" href="#skills" onClick={(e) => { e.preventDefault(); scrollToSection('skills'); }}>Skills</a></li>
-              <li className="nav-item"><a className="nav-link" href="#projects" onClick={(e) => { e.preventDefault(); scrollToSection('projects'); }}>Projects</a></li>
-              <li className="nav-item"><a className="nav-link" href="#experience" onClick={(e) => { e.preventDefault(); scrollToSection('experience'); }}>Experience</a></li>
-              <li className="nav-item"><a className="nav-link" href="#contact" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>Contact</a></li>
+              <li className="nav-item"><a className="nav-link" href="#home" onClick={(e) => handleNavClick(e, 'home')}>Home</a></li>
+              <li className="nav-item"><a className="nav-link" href="#about" onClick={(e) => handleNavClick(e, 'about')}>About</a></li>
+              <li className="nav-item"><a className="nav-link" href="#skills" onClick={(e) => handleNavClick(e, 'skills')}>Skills</a></li>
+              <li className="nav-item"><a className="nav-link" href="#projects" onClick={(e) => handleNavClick(e, 'projects')}>Projects</a></li>
+              <li className="nav-item"><a className="nav-link" href="#experience" onClick={(e) => handleNavClick(e, 'experience')}>Experience</a></li>
+              <li className="nav-item"><a className="nav-link" href="#contact" onClick={(e) => handleNavClick(e, 'contact')}>Contact</a></li>
             </ul>
           </div>
         </div>
@@ -211,26 +232,32 @@ function App() {
               <p className="lead mb-4 selectable-text typewriter-text">
                 Passionate about building robust backend systems and modern web applications. I love solving real-world problems with clean code and scalable solutions.
               </p>
-              <button 
-                type="button" 
-                className={`btn btn-primary btn-lg me-2 mb-2 download-btn ${downloadState}`}
-                onClick={handleDownload}
-                disabled={downloadState === 'downloading'}
-              >
-                {downloadState === 'idle' && 'Download Resume'}
-                {downloadState === 'downloading' && (
-                  <>
-                    <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                    Downloading...
-                  </>
-                )}
-                {downloadState === 'success' && (
-                  <>
-                    <i className="fas fa-check me-2"></i>
-                    Downloaded!
-                  </>
-                )}
-              </button>
+              <div className="chevron-social-btns mb-4">
+                <button className="chevron-btn leetcode" aria-label="LeetCode" onClick={() => window.open('https://leetcode.com/u/Brajesh-Kumar/', '_blank', 'noopener noreferrer')}>
+                  <span className="chevron-icon">
+                    <svg width="22" height="22" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginRight: 0}}>
+                      <g>
+                        <path d="M19.5 25L34 39.5" stroke="#f9a825" strokeWidth="4" strokeLinecap="round"/>
+                        <path d="M19.5 25L34 10.5" stroke="#f9a825" strokeWidth="4" strokeLinecap="round"/>
+                        <circle cx="25" cy="25" r="22" stroke="#f9a825" strokeWidth="4"/>
+                      </g>
+                    </svg>
+                  </span>
+                  <span className="chevron-label">Leetcode</span>
+                </button>
+                <button className="chevron-btn github" aria-label="GitHub" onClick={() => window.open('https://github.com/Brajeshkumar1107', '_blank', 'noopener noreferrer')}>
+                  <span className="chevron-icon">
+                    <i className="fab fa-github"></i>
+                  </span>
+                  <span className="chevron-label">Github</span>
+                </button>
+                <button className="chevron-btn linkedin" aria-label="LinkedIn" onClick={() => window.open('https://www.linkedin.com/in/brajesh-kumar-a008b2250/', '_blank', 'noopener noreferrer')}>
+                  <span className="chevron-icon">
+                    <i className="fab fa-linkedin-in"></i>
+                  </span>
+                  <span className="chevron-label">LinkedIn</span>
+                </button>
+              </div>
             </div>
             <div className="col-md-5 text-center d-flex justify-content-center align-items-center">
               <div className="profile-photo-wrapper mx-auto">
@@ -343,7 +370,7 @@ function App() {
                   </button>
                   <button 
                     className="btn btn-outline-primary"
-                    onClick={() => window.open('https://www.linkedin.com/in/brajesh-kumar-a008b2250/', '_blank', 'noopener noreferrer')}
+                    onClick={() => window.open('mailto:brajeshku1107@gmail.com')}
                   >
                     <i className="fas fa-envelope me-2"></i>
                     Get In Touch
@@ -366,25 +393,25 @@ function App() {
                 <h5 className="skills-title mb-3">Backend Development</h5>
                 <div className="skill-items">
                   <div className="skill-item">
-                    <span className="skill-name">Java <span className="skill-percentage">90%</span></span>
+                    <span className="skill-name">Java</span>
                     <div className="skill-bar">
                       <div className="skill-progress" style={{width: '90%'}}></div>
                     </div>
                   </div>
                   <div className="skill-item">
-                    <span className="skill-name">Spring Boot <span className="skill-percentage">85%</span></span>
+                    <span className="skill-name">Spring Boot</span>
                     <div className="skill-bar">
                       <div className="skill-progress" style={{width: '85%'}}></div>
                     </div>
                   </div>
                   <div className="skill-item">
-                    <span className="skill-name">REST API <span className="skill-percentage">80%</span></span>
+                    <span className="skill-name">REST API</span>
                     <div className="skill-bar">
                       <div className="skill-progress" style={{width: '80%'}}></div>
                     </div>
                   </div>
                   <div className="skill-item">
-                    <span className="skill-name">JWT <span className="skill-percentage">75%</span></span>
+                    <span className="skill-name">JWT</span>
                     <div className="skill-bar">
                       <div className="skill-progress" style={{width: '75%'}}></div>
                     </div>
@@ -398,25 +425,25 @@ function App() {
                 <h5 className="skills-title mb-3">Database & Tools</h5>
                 <div className="skill-items">
                   <div className="skill-item">
-                    <span className="skill-name">MySQL <span className="skill-percentage">85%</span></span>
+                    <span className="skill-name">MySQL</span>
                     <div className="skill-bar">
                       <div className="skill-progress" style={{width: '85%'}}></div>
                     </div>
                   </div>
                   <div className="skill-item">
-                    <span className="skill-name">Git <span className="skill-percentage">80%</span></span>
+                    <span className="skill-name">Git</span>
                     <div className="skill-bar">
                       <div className="skill-progress" style={{width: '80%'}}></div>
                     </div>
                   </div>
                   <div className="skill-item">
-                    <span className="skill-name">Maven <span className="skill-percentage">75%</span></span>
+                    <span className="skill-name">Maven</span>
                     <div className="skill-bar">
                       <div className="skill-progress" style={{width: '75%'}}></div>
                     </div>
                   </div>
                   <div className="skill-item">
-                    <span className="skill-name">Postman <span className="skill-percentage">85%</span></span>
+                    <span className="skill-name">Postman</span>
                     <div className="skill-bar">
                       <div className="skill-progress" style={{width: '85%'}}></div>
                     </div>
@@ -430,25 +457,25 @@ function App() {
                 <h5 className="skills-title mb-3">Frontend Development</h5>
                 <div className="skill-items">
                   <div className="skill-item">
-                    <span className="skill-name">Angular <span className="skill-percentage">70%</span></span>
+                    <span className="skill-name">Angular</span>
                     <div className="skill-bar">
                       <div className="skill-progress" style={{width: '70%'}}></div>
                     </div>
                   </div>
                   <div className="skill-item">
-                    <span className="skill-name">HTML/CSS <span className="skill-percentage">85%</span></span>
+                    <span className="skill-name">HTML/CSS</span>
                     <div className="skill-bar">
                       <div className="skill-progress" style={{width: '85%'}}></div>
                     </div>
                   </div>
                   <div className="skill-item">
-                    <span className="skill-name">Bootstrap <span className="skill-percentage">80%</span></span>
+                    <span className="skill-name">Bootstrap</span>
                     <div className="skill-bar">
                       <div className="skill-progress" style={{width: '80%'}}></div>
                     </div>
                   </div>
                   <div className="skill-item">
-                    <span className="skill-name">JavaScript <span className="skill-percentage">75%</span></span>
+                    <span className="skill-name">JavaScript</span>
                     <div className="skill-bar">
                       <div className="skill-progress" style={{width: '75%'}}></div>
                     </div>
@@ -835,9 +862,39 @@ function App() {
       {/* Contact Me */}
       <section id="contact" className="py-5" data-aos="fade-up">
         <div className="container">
-          <h2 className="section-title">Contact Me</h2>
-          <div className="row">
-            <div className="col-md-7 mb-4 mb-md-0">
+          <div className="row align-items-start">
+            <div className="col-lg-5 mb-4 mb-lg-0">
+              <h2 className="section-title">Contact Me</h2>
+              <div id="contact-info-card">
+                <span className="accent-bar"></span>
+                <p className="lead">I'd love to hear from you! Feel free to reach out for collaborations, opportunities, or just to say hello.</p>
+                <ul className="contact-info-list">
+                  <li>
+                    <span className="contact-icon"><i className="fas fa-envelope"></i></span>
+                    <div>
+                      <div className="contact-info-label">Email:</div>
+                      <a href="mailto:brajeshku1107@gmail.com">brajeshku1107@gmail.com</a>
+                    </div>
+                  </li>
+                  <li>
+                    <span className="contact-icon"><i className="fab fa-linkedin"></i></span>
+                    <div>
+                      <div className="contact-info-label">LinkedIn:</div>
+                      <a href="https://www.linkedin.com/in/brajesh-kumar-a008b2250/" target="_blank" rel="noopener noreferrer">Brajesh Kumar</a>
+                    </div>
+                  </li>
+                  <li>
+                    <span className="contact-icon"><i className="fab fa-github"></i></span>
+                    <div>
+                      <div className="contact-info-label">GitHub:</div>
+                      <a href="https://github.com/Brajeshkumar1107" target="_blank" rel="noopener noreferrer">Brajeshkumar1107</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <div className="col-lg-7">
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">Name</label>
@@ -849,19 +906,6 @@ function App() {
                     value={formData.name} 
                     onChange={handleFormChange} 
                     placeholder="Your Name" 
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="email" className="form-label">Email</label>
-                  <input 
-                    type="email" 
-                    className="form-control" 
-                    id="email" 
-                    name="email" 
-                    value={formData.email} 
-                    onChange={handleFormChange} 
-                    placeholder="Your Email" 
                     required
                   />
                 </div>
@@ -878,62 +922,38 @@ function App() {
                     required
                   ></textarea>
                 </div>
-                <button 
-                  type="submit" 
-                  className="btn btn-primary" 
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? (
-                    <>
-                      <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                      Sending...
-                    </>
-                  ) : (
-                    'Send Message'
-                  )}
-                </button>
-                <button 
-                  type="button" 
-                  className="btn btn-outline-dark ms-2" 
-                  onClick={handleDownload}
-                  disabled={downloadState === 'downloading'}
-                >
-                  {downloadState === 'idle' && (
-                    <>
-                      <i className="fas fa-download me-2"></i>
-                      Download Resume
-                    </>
-                  )}
-                  {downloadState === 'downloading' && (
-                    <>
-                      <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                      Downloading...
-                    </>
-                  )}
-                  {downloadState === 'success' && (
-                    <>
-                      <i className="fas fa-check me-2"></i>
-                      Downloaded!
-                    </>
-                  )}
-                </button>
+                <div className="text-end">
+                  <button 
+                    type="submit" 
+                    className="btn btn-primary" 
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <i className="fas fa-paper-plane me-2"></i>
+                        Send Message
+                      </>
+                    )}
+                  </button>
+                </div>
               </form>
               {submitStatus === 'success' && (
                 <div className="alert alert-success mt-3" role="alert">
+                  <i className="fas fa-check-circle me-2"></i>
                   Message sent successfully! I will get back to you as soon as possible.
                 </div>
               )}
               {submitStatus === 'error' && (
                 <div className="alert alert-danger mt-3" role="alert">
+                  <i className="fas fa-exclamation-triangle me-2"></i>
                   Failed to send message. Please try again later or contact me directly.
                 </div>
               )}
-            </div>
-            <div className="col-md-5">
-              <h5 className="fw-semibold mb-3">Connect with me</h5>
-              <a href="https://www.linkedin.com/in/brajesh-kumar-a008b2250/" className="me-3 fs-4" title="LinkedIn" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></a>
-              <a href="https://github.com/Brajeshkumar1107" className="me-3 fs-4" title="GitHub" target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i></a>
-              <a href="mailto:brajeshsharma112004@gmail.com" className="fs-4" title="Email"><i className="fas fa-envelope"></i></a>
             </div>
           </div>
         </div>
@@ -947,20 +967,9 @@ function App() {
       {/* Footer */}
       <footer className="footer mt-5">
         <div className="container">
-          <div className="row align-items-center">
-            <div className="col-md-6 mb-2 mb-md-0">
-              <span>&copy; 2024 Brajesh Kumar. All rights reserved.</span>
-            </div>
-            <div className="col-md-3 mb-2 mb-md-0">
-              <a href="#home" className="me-3">Home</a>
-              <a href="#about" className="me-3">About</a>
-              <a href="#skills" className="me-3">Skills</a>
-              <a href="#projects" className="me-3">Projects</a>
-            </div>
-            <div className="col-md-3 text-md-end">
-              <a href="https://www.linkedin.com/in/brajesh-kumar-a008b2250/" className="me-2" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i></a>
-              <a href="https://github.com/Brajeshkumar1107" className="me-2" target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i></a>
-              <a href="mailto:brajeshsharma112004@gmail.com"><i className="fas fa-envelope"></i></a>
+          <div className="row align-items-center justify-content-center">
+            <div className="col-12 text-center">
+              <span>&copy; 2025 Brajesh Kumar. All rights reserved.</span>
             </div>
           </div>
         </div>
