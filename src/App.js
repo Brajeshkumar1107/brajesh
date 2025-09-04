@@ -58,7 +58,7 @@ function App() {
     setDownloadState('downloading');
     // Download the existing PDF file from public folder
     const link = document.createElement('a');
-    link.href = '/Brajesh Resume.pdf';
+    link.href = process.env.PUBLIC_URL + '/Brajesh Resume.pdf';
     link.download = 'Brajesh Resume.pdf';
     document.body.appendChild(link);
     link.click();

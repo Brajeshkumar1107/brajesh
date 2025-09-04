@@ -64,8 +64,8 @@ const About = ({ downloadState, handleDownload }) => (
                   <i className="fas fa-users"></i>
                 </div>
                 <div className="feature-content">
-                  <h5>Team Player</h5>
-                  <p>Excellent collaboration skills</p>
+                  <h5>Team Leader</h5>
+                  <p>Excellent leadership and collaboration skills</p>
                 </div>
               </div>
             </div>

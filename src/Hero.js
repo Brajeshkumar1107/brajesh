@@ -9,9 +9,9 @@ const Hero = ({ displayText }) => (
             {displayText}
             <span className="cursor">|</span>
           </h1>
-          <h3 className="mb-3 selectable-text typewriter-text">Java Developer | Spring Boot Enthusiast</h3>
+          <h3 className="mb-3 selectable-text typewriter-text">Full Stack Developer | Java Enthusiast</h3>
           <p className="lead mb-4 selectable-text typewriter-text">
-            Passionate about building robust backend systems and modern web applications. I love solving real-world problems with clean code and scalable solutions.
+            Passionate about building robust full-stack applications and modern web solutions. I love solving real-world problems with clean code and scalable architectures across frontend and backend.
           </p>
           <div className="chevron-social-btns mb-4">
             <button className="chevron-btn leetcode" aria-label="LeetCode" onClick={() => window.open('https://leetcode.com/u/Brajesh-Kumar/', '_blank', 'noopener noreferrer')}>
