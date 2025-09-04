@@ -14,7 +14,7 @@ const Contact = ({ formData, handleFormChange, handleSubmit, isSubmitting, submi
                 <span className="contact-icon"><i className="fas fa-envelope"></i></span>
                 <div>
                   <div className="contact-info-label">Email:</div>
-                  <a href="mailto:brajeshku1107@gmail.com">brajeshku1107@gmail.com</a>
+                  <a href="mailto:brajeshsharma112004@gmail.com">brajeshsharma112004@gmail.com</a>
                 </div>
               </li>
               <li>

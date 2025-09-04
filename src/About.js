@@ -96,7 +96,7 @@ const About = ({ downloadState, handleDownload }) => (
               </button>
               <button 
                 className="btn btn-outline-primary"
-                onClick={() => window.open('mailto:brajeshku1107@gmail.com')}
+                onClick={() => window.open('mailto:brajeshsharma112004@gmail.com')}
               >
                 <i className="fas fa-envelope me-2"></i>
                 Get In Touch
