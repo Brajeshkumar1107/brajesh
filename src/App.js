@@ -97,6 +97,7 @@ function App() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify({
           name: formData.name,
@@ -110,7 +111,6 @@ function App() {
         setSubmitStatus('success');
         setIsSubmitting(false);
         setFormData({ name: '', email: '', message: '' });
-        scrollToSection('home');
         setTimeout(() => {
           setSubmitStatus('idle');
         }, 3000);

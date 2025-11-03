@@ -50,6 +50,20 @@ const Contact = ({ formData, handleFormChange, handleSubmit, isSubmitting, submi
               />
             </div>
             <div className="mb-3">
+              <label htmlFor="email" className="form-label">Email</label>
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleFormChange}
+                placeholder="your@email.com"
+                required
+                autoComplete="email"
+              />
+            </div>
+            <div className="mb-3">
               <label htmlFor="message" className="form-label">Message</label>
               <textarea 
                 className="form-control" 
@@ -83,13 +97,43 @@ const Contact = ({ formData, handleFormChange, handleSubmit, isSubmitting, submi
             </div>
           </form>
           {submitStatus === 'success' && (
-            <div className="alert alert-success mt-3" role="alert">
+            <div
+              role="alert"
+              aria-live="assertive"
+              aria-atomic="true"
+              style={{
+                position: 'fixed',
+                right: '20px',
+                top: '20px',
+                zIndex: 1050,
+                backgroundColor: '#198754',
+                color: '#fff',
+                padding: '12px 16px',
+                borderRadius: '8px',
+                boxShadow: '0 8px 24px rgba(0,0,0,0.2)'
+              }}
+            >
               <i className="fas fa-check-circle me-2"></i>
               Message sent successfully! I will get back to you as soon as possible.
             </div>
           )}
           {submitStatus === 'error' && (
-            <div className="alert alert-danger mt-3" role="alert">
+            <div
+              role="alert"
+              aria-live="assertive"
+              aria-atomic="true"
+              style={{
+                position: 'fixed',
+                right: '20px',
+                top: '20px',
+                zIndex: 1050,
+                backgroundColor: '#dc3545',
+                color: '#fff',
+                padding: '12px 16px',
+                borderRadius: '8px',
+                boxShadow: '0 8px 24px rgba(0,0,0,0.2)'
+              }}
+            >
               <i className="fas fa-exclamation-triangle me-2"></i>
               Failed to send message. Please try again later or contact me directly.
             </div>
